@@ -1,143 +1,117 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
     <title>Книжний магазин</title>
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #fdf6e3;
-            color: #333;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        .book-list, .order-form, .prices {
-            background-color: #fff8dc;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
-        }
-        ul {
-            line-height: 1.6;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            border: 1px solid #999;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2e6d9;
-        }
-        img {
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        iframe {
-            margin-top: 10px;
-        }
-        label {
-            font-weight: bold;
-        }
-        input, select, button {
-            margin-top: 5px;
-            padding: 5px;
-            width: 200px;
-        }
-        button {
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #34495e;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-<h1>Ласкаво просимо до книжного магазину "BookStore"</h1>
+
+<header>
+    <h1>Книжний магазин "BookStore"</h1>
     <p>Тут ви знайдете книги на будь-який смак: художню літературу, наукову, дитячу та фантастику.</p>
+</header>
+    
+<main class="container">
 
-    <h2>Популярні книги</h2>
-    <div class="book-list">
-        <img src="https://content1.rozetka.com.ua/goods/images/big/520901450.jpg" alt="Гаррі Поттер" width="150">
-    <img src="https://knigolove.ua/image/cache/catalog/1/x4Le5MnzjXOx_TNoObqEQQKwt1WNUlhk-1000x1000.png" alt="Мобі Дік" width="150">
-    <img src="https://bi.ua/uploaded-images/products/size_650/604993_1.jpg" alt="Маленький принц" width="150">
-        
-    </div>
+    <section class="popular">
+        <h2>Популярні книги</h2>
+        <div class="book-list">
+            <img src="https://content1.rozetka.com.ua/goods/images/big/520901450.jpg" alt="Гаррі Поттер" width="250">
+            <img src="https://knigolove.ua/image/cache/catalog/1/x4Le5MnzjXOx_TNoObqEQQKwt1WNUlhk-1000x1000.png" alt="Мобі Дік" width="250">
+            <img src="https://bi.ua/uploaded-images/products/size_650/604993_1.jpg" alt="Маленький принц" width="250">
+        </div>
+    </section>
 
-    <h2>Жанри</h2>
-    <ul>
-        <li>Художня література</li>
-        <li>Наукова література</li>
-        <li>Дитяча література</li>
-        <li>Фантастика</li>
-    </ul>
+     <section class="genres">
+        <h2>Жанри</h2>
+        <ul>
+            <li>Художня література</li>
+            <li>Наукова література</li>
+            <li>Дитяча література</li>
+            <li>Фантастика</li>
+        </ul>
+    </section>
 
-    <h2>Ціни на книги</h2>
-    <div class="prices">
-        <table>
-            <tr>
-                <th>Назва</th>
-                <th>Автор</th>
-                <th>Ціна</th>
-            </tr>
-            <tr>
-                <td>Гаррі Поттер</td>
-                <td>Джоан Роулінг</td>
-                <td>300 грн</td>
-            </tr>
-            <tr>
-                <td>Мобі Дік</td>
-                <td>Герман Мелвілл</td>
-                <td>250 грн</td>
-            </tr>
-            <tr>
-                <td>Маленький принц</td>
-                <td>Антуан де Сент-Екзюпері</td>
-                <td>200 грн</td>
-            </tr>
-        </table>
-    </div>
+    <section>
+        <h2>Ціни на книги</h2>
+        <div class="prices">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Автор</th>
+                        <th>Ціна</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Гаррі Поттер</td>
+                        <td>Джоан Роулінг</td>
+                        <td>300 грн</td>
+                    </tr>
+                    <tr>
+                        <td>Мобі Дік</td>
+                        <td>Герман Мелвілл</td>
+                        <td>250 грн</td>
+                    </tr>
+                    <tr>
+                        <td>Маленький принц</td>
+                        <td>Антуан де Сент-Екзюпері</td>
+                        <td>200 грн</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <h2>Замовити книгу</h2>
-    <div class="order-form">
-        <form>
-            <label for="name">Ваше ім'я:</label><br>
-            <input type="text" id="name" name="name"><br><br>
+    <section>
+        <h2>Замовити книгу</h2>
+        <div class="order-form">
+            <form>
+                <label for="name">Ваше ім'я:</label><br>
+                <input type="text" id="name" name="name" required><br><br>
 
-            <label for="book">Виберіть книгу:</label><br>
-            <select id="book" name="book">
-                <option>Гаррі Поттер</option>
-                <option>Мобі Дік</option>
-                <option>Маленький принц</option>
-            </select><br><br>
+                <label for="book">Виберіть книгу:</label><br>
+                <select id="book" name="book">
+                    <option>Гаррі Поттер</option>
+                    <option>Мобі Дік</option>
+                    <option>Маленький принц</option>
+                </select><br><br>
 
-            <button type="submit">Замовити</button>
-        </form>
-    </div>
+                <button type="submit">Замовити</button>
+            </form>
+        </div>
+    </section>
 
-    <h2>Наші книги</h2>
-    <h3>Гаррі Поттер</h3>
-        <p>Автор: Джоан Роулінг</p>
+    <section>
+        <h2>Наші книги</h2>
 
-        <h3>Мобі Дік</h3>
-        <p>Автор: Герман Мелвілл</p>
+        <article>
+            <h3>Гаррі Поттер</h3>
+            <p>Автор: Джоан Роулінг</p>
+        </article>
 
-        <h3>Маленький принц</h3>
-        <p>Автор: Антуан де Сент-Екзюпері</p>
+        <article>
+            <h3>Мобі Дік</h3>
+            <p>Автор: Герман Мелвілл</p>
+        </article>
 
-    <h2>Відео-презентація</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rno3IWMscNs?si=plemVP1RPHGJ6IMv" frameborder="0" allowfullscreen></iframe>
+        <article>
+            <h3>Маленький принц</h3>
+            <p>Автор: Антуан де Сент-Екзюпері</p>
+        </article>
+    </section>
+
+    <section>
+        <h2>Відео-презентація</h2>
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/Rno3IWMscNs"
+            allowfullscreen>
+        </iframe>
+    </section>
+
+</main>
 
 </body>
 </html>
