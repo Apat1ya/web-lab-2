@@ -363,7 +363,7 @@ body.dark .cart-table td {
     background: #523e72;
 }
 
-.dark .book-card {
+.dark .book-card { 
     background: rgba(117, 89, 163, 0.5);
 
     color: white;
