@@ -1,0 +1,628 @@
+/*базовий стиль*/
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Lucida Console;
+}
+
+h1{
+    text-align: center;
+  margin-bottom: 15px;
+  color: #7559A3;
+}
+
+/* хедер */
+header {
+    background: #7559A3;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px ;
+    font-family: Lucida Console;
+}
+
+.logo {
+    text-decoration: none;
+    color: white; 
+    font-weight: bold;
+    font-size: 20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #F2BB54;
+}
+
+.theme-button {
+    
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: auto;
+    padding: 0%;
+    transition: 0.3;
+
+}
+
+/* банер */
+/* .banner {
+    position: relative;
+    width: 100%;
+}
+
+.banner img {
+    width: 100%;
+    display: block;
+}
+
+.banner-button {
+    position: absolute;
+    top: 390px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition-duration: 0.4s;transition-duration: 0.4s;
+    
+    background: #F2BB54;
+    color: white;
+    text-decoration: none;
+    padding: 18px 70px;
+    border-radius: 35px;
+    font-size: 24px;
+}
+
+.banner-button:hover{
+    background: #7559A3;
+} */
+
+/* каталог */
+.catalog {
+    padding: 50px;
+}
+.book-list {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.book-card {
+    width: 220px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.4s;
+}
+
+.book-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.book-card:hover {
+    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    border: 1px solid #F2BB54;
+}
+
+.buy-button {
+    display: inline-block;
+    margin-top: 15px;
+    background: #F2BB54;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.buy-button:hover {
+    background: #7559A3;
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* форма */
+.auth-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: #63666b;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.tab.active {
+    color: white;
+    background-color: #7559A3;
+    border-bottom: 2px solid #7559A3;
+}
+
+.forms {
+    position: relative;
+    min-height: 260px;
+}
+
+.form {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+    transform: translateX(20px);
+    transition: 0.4s ease;
+    pointer-events: none;
+}
+
+.form.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+    color: white;
+}
+
+input {
+    width: 500px;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid #7559A3;
+    background: white;
+    color: #7559A3;
+    outline: none;
+}
+
+button {
+    width: 520px;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    background: #7559A3;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: Lucida Console;
+}
+
+button:hover {
+    background: #F2BB54;
+}
+
+/* кошик */
+.cart-container {
+    width: 80%;
+    margin: 70px auto;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    align-items: flex-start;
+
+}
+
+.cart-table {
+  flex: 1;
+  background: white;
+  border: 3px solid #BAACD1;
+  border-radius: 30px;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.summary-cart {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  background: white;
+  border: 3px solid #BAACD1;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.promo-button {
+    width: 100%;
+    padding: auto;
+    border-radius: 50px;
+    background: #BAACD1;
+    color: #7559A3;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.promo-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1.5px solid #BAACD1;
+    border-radius: 50px;
+    font-size: 15px;
+    color: #aaa;
+    box-sizing: border-box;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 50px;
+    background: #BAACD1;
+    color: #7559A3;
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center; 
+     text-decoration: none;
+}
+
+.checkout-button:hover {
+    background: #F2BB54;
+}
+
+.cart-table thead {
+  background: white;
+  color: #7559A3;
+}
+
+.cart-table th {
+    padding: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.cart-table td {
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.book-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    text-align: left;
+}
+
+.book-info img {
+    width: 80px;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.book-info p {
+    margin: 4px 0;
+}
+
+
+
+.delete-button {
+    width: auto;
+    padding: 5px 8px;
+    border: none;
+    background: transparent;
+    color: #ef4444;
+    font-size: 25px;
+    
+}
+
+/* темна тема */
+.dark {
+    background: #232323;
+    color: white;
+}
+
+body.dark .cart-table {
+    background: white;
+    color: black;
+}
+
+body.dark .cart-table th {
+    background-color: #7559A3 ;
+    color: white ;
+}
+
+body.dark .cart-table td {
+    background-color: white ;
+    color: black ;
+}
+
+.dark header {
+    background: #523e72;
+}
+
+.dark .book-card { 
+    background: rgba(117, 89, 163, 0.5);
+
+    color: white;
+}
+
+/* сторінка про магазин */
+
+.about-text {
+  background: #7559A3;
+  border-radius: 20px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.about {
+    width: 75%;
+    margin: 50px auto 24px;
+    background: #7559A3;
+    border-radius: 20px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about::after {
+    content: '📚';
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 90px;
+    opacity: 0.15;
+
+}
+
+.about-text h1 {
+    font-size: 35px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 12px;
+    text-align: left;
+}
+
+.about-text p {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.75;
+    max-width: 760px;
+    margin: 0;
+}
+
+.about-perk {
+    width: 80%;
+    margin: 0 auto 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.perk-card {
+    background: white;
+    border: 2px solid #BAACD1;
+    border-radius: 16px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.perk-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 10px;
+    background: #c7bedd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.perk-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #7559A3;
+    margin: 0;
+}
+
+.video {
+    width: 80%;
+    margin: 0 auto 24px;
+    background: white;
+    border: 2px solid #BAACD1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.video-header {
+    padding: 20px 28px 16px;
+    border-bottom: 1px solid #BAACD1;
+}
+
+.video-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #7559A3;
+    margin: 0;
+}
+
+.video iframe {
+    display: block;
+    width: calc(100% - 56px);
+    height: 360px;
+    margin: 20px 28px;
+    border: none;
+    border-radius: 12px;
+}
+
+.about-stats {
+    width: 80%;
+    margin: 0 auto 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.stat-box {
+    background: #F7F4FC;
+    border: 2px solid #BAACD1;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #7559A3;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #888;
+}
+
+/* parallax  */
+
+.parallax {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+}
+
+.banner-frame {
+  position: absolute;
+  top: 45px;
+  left: 55px;
+  right: 55px;
+  bottom: 25px;
+  border: 3px solid white;
+  border-radius: 30px;
+  z-index: 2;
+}
+
+.layer.bg {
+  position: absolute;
+  inset: 0;
+  background: #C4AEE6;
+  z-index: 0;
+}
+
+.banner-text {
+   position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+  text-align: center;
+
+  color: white;
+}
+
+.banner-text h1 {
+   font-size: 72px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.banner-text p {
+  font-size: 28px;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  letter-spacing: 2px;
+}
+
+
+.btn {
+ display: inline-block;
+
+  padding: 14px 70px;
+
+  background: #E8B54D;
+  color: white;
+
+  text-decoration: none;
+  border-radius: 40px;
+
+  font-size: 22px;
+  font-weight: 600;
+
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: white;
+  color:#7559A3;
+;
+}
+
+.book-icons img {
+  position: absolute;
+  display: block;
+  height: auto;
+}
+
+.book1 {
+  width: 150px;
+  top: -5px;
+  left: -20px;
+  transform: rotate(-15deg);
+}
+
+.book2 {
+  width: 150px;
+  top: -30px;
+  right: 130px;
+  transform: rotate(12deg);
+}
+
+.book3 {
+  width: 220px;
+  bottom: -25px;
+  left: 45px;
+  transform: rotate(-8deg);
+}
+
+.book4 {
+  width: 280px;
+  bottom: -35px;
+  right: -20px;
+  transform: rotate(3deg);
+}
