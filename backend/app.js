@@ -1,5 +1,20 @@
 const express = require("express");
+const path = require("node:path");
 const { createBooksRouter } = require("./routes/books");
+
+const publicRoot = path.resolve(__dirname, "..");
+const pages = new Set([
+    "about.html",
+    "account.html",
+    "book.html",
+    "cart.html",
+    "catalog.html",
+    "checkout.html",
+    "error.html",
+    "index.html",
+    "payment.html",
+    "success.html",
+]);
 
 function createApp({ repository }) {
     const app = express();
@@ -17,13 +32,28 @@ function createApp({ repository }) {
     });
 
     app.use(express.json());
-    app.use(express.static("."));
 
     app.get("/api/health", (req, res) => {
         res.json({ status: "ok", database: "postgresql" });
     });
 
     app.use("/api/books", createBooksRouter(repository));
+
+    app.use("/assets", express.static(path.join(publicRoot, "assets")));
+    app.use("/js", express.static(path.join(publicRoot, "js")));
+
+    app.get(["/", "/style.css", "/script.js"], (req, res) => {
+        const fileName = req.path === "/" ? "index.html" : req.path.slice(1);
+        res.sendFile(path.join(publicRoot, fileName));
+    });
+
+    app.get("/:page", (req, res, next) => {
+        if (!pages.has(req.params.page)) {
+            return next();
+        }
+
+        res.sendFile(path.join(publicRoot, req.params.page));
+    });
 
     app.use((req, res) => {
         res.status(404).json({ error: "Route not found" });

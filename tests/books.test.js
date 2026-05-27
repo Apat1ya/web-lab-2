@@ -68,6 +68,27 @@ test("books API validates required fields", async () => {
     }
 });
 
+test("app serves frontend files without exposing repo metadata", async () => {
+    const repository = createTestRepository();
+    const server = createApp({ repository }).listen(0);
+    const baseUrl = `http://127.0.0.1:${server.address().port}`;
+
+    try {
+        let response = await fetch(`${baseUrl}/`);
+        assert.equal(response.status, 200);
+        assert.match(await response.text(), /BookStore/);
+
+        response = await fetch(`${baseUrl}/style.css`);
+        assert.equal(response.status, 200);
+        assert.match(response.headers.get("content-type"), /text\/css/);
+
+        response = await fetch(`${baseUrl}/package.json`);
+        assert.equal(response.status, 404);
+    } finally {
+        await new Promise((resolve) => server.close(resolve));
+    }
+});
+
 function createTestRepository() {
     const books = [];
     let nextId = 1;
