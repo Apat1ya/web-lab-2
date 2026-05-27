@@ -1,14 +1,31 @@
-const express = require("express");
+const { createApp } = require("./backend/app");
+const { config } = require("./backend/config");
+const { createPostgresBookRepository } = require("./backend/repositories/postgresBookRepository");
 
-const app = express();
-const PORT = 3000;
+async function start() {
+    const repository = await createPostgresBookRepository(config.postgres);
+    const app = createApp({ repository });
 
-app.use(express.json());
+    const server = app.listen(config.port, () => {
+        console.log(`Server started on http://localhost:${config.port}`);
+    });
 
-app.get("/", (req, res) => {
-    res.send("Сервер работает!");
-});
+    async function shutdown() {
+        server.close(async () => {
+            await repository.close();
+            process.exit(0);
+        });
+    }
 
-app.listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
-});
+    process.on("SIGINT", shutdown);
+    process.on("SIGTERM", shutdown);
+}
+
+if (require.main === module) {
+    start().catch((error) => {
+        console.error("Server failed to start:", error);
+        process.exit(1);
+    });
+}
+
+module.exports = { start };

@@ -1,0 +1,35 @@
+INSERT INTO books (title, author, price, stock, description, image_url)
+VALUES
+    (
+        'Harry Potter and the Philosopher''s Stone',
+        'J. K. Rowling',
+        300.00,
+        12,
+        'A fantasy novel about a young wizard.',
+        'https://content1.rozetka.com.ua/goods/images/big/520901450.jpg'
+    ),
+    (
+        'Moby-Dick',
+        'Herman Melville',
+        250.00,
+        8,
+        'A classic sea adventure novel.',
+        'https://knigolove.ua/image/cache/catalog/1/x4Le5MnzjXOx_TNoObqEQQKwt1WNUlhk-1000x1000.png'
+    ),
+    (
+        'The Little Prince',
+        'Antoine de Saint-Exupery',
+        200.00,
+        15,
+        'A poetic story for children and adults.',
+        'https://bi.ua/uploaded-images/products/size_650/604993_1.jpg'
+    ),
+    (
+        'Pusheen: A Cat''s Guide to Everything',
+        'Claire Belton',
+        280.00,
+        9,
+        'A funny illustrated book about Pusheen the cat.',
+        'https://content2.rozetka.com.ua/goods/images/big/511797154.png'
+    )
+ON CONFLICT (title, author) DO NOTHING;

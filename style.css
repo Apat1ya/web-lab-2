@@ -2,13 +2,13 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Lucida Console;
+    font-family: "Lucida Console", monospace;
 }
 
-h1{
+h1 {
     text-align: center;
-  margin-bottom: 15px;
-  color: #7559A3;
+    margin-bottom: 15px;
+    color: #7559A3;
 }
 
 /* хедер */
@@ -18,13 +18,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px ;
-    font-family: Lucida Console;
+    padding: 20px;
+    font-family: "Lucida Console", monospace;
 }
 
 .logo {
     text-decoration: none;
-    color: white; 
+    color: white;
     font-weight: bold;
     font-size: 20px;
 }
@@ -47,51 +47,22 @@ nav a:hover {
 }
 
 .theme-button {
-    
+
     background: transparent;
     border: none;
     color: white;
     font-size: 24px;
     width: auto;
-    padding: 0%;
-    transition: 0.3;
+    padding: 0;
+    transition: color 0.3s ease, background-color 0.3s ease;
 
 }
-
-/* банер */
-/* .banner {
-    position: relative;
-    width: 100%;
-}
-
-.banner img {
-    width: 100%;
-    display: block;
-}
-
-.banner-button {
-    position: absolute;
-    top: 390px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition-duration: 0.4s;transition-duration: 0.4s;
-    
-    background: #F2BB54;
-    color: white;
-    text-decoration: none;
-    padding: 18px 70px;
-    border-radius: 35px;
-    font-size: 24px;
-}
-
-.banner-button:hover{
-    background: #7559A3;
-} */
 
 /* каталог */
 .catalog {
     padding: 50px;
 }
+
 .book-list {
     padding-top: 25px;
     display: flex;
@@ -103,22 +74,34 @@ nav a:hover {
 .book-card {
     width: 220px;
     background: white;
-    border-radius: 20px;
+    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: 0.4s;
+    display: flex;
+    flex-direction: column;
+    min-height: 430px;
 }
 
 .book-card img {
     width: 100%;
-    height: 100%;
+    height: 280px;
     object-fit: cover;
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 .book-card:hover {
-    box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
     border: 1px solid #F2BB54;
+}
+
+.book-card h3 {
+    min-height: 48px;
+}
+
+.book-card .card-actions,
+.book-card .buy-button {
+    margin-top: auto;
 }
 
 .buy-button {
@@ -128,7 +111,7 @@ nav a:hover {
     color: white;
     text-decoration: none;
     padding: 12px 25px;
-    border-radius: 30px;
+    border-radius: 8px;
     transition: 0.3s;
 }
 
@@ -137,9 +120,9 @@ nav a:hover {
 }
 
 .auth-tabs {
-  display: flex;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #1f2937;
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #1f2937;
 }
 
 /* форма */
@@ -187,7 +170,7 @@ nav a:hover {
 .form.active {
     opacity: 1;
     transform: translateX(0);
-    pointer-events: all;
+    pointer-events: auto;
     color: white;
 }
 
@@ -211,11 +194,196 @@ button {
     color: white;
     cursor: pointer;
     transition: 0.3s;
-    font-family: Lucida Console;
+    font-family: "Lucida Console", monospace;
 }
 
 button:hover {
     background: #F2BB54;
+}
+
+.catalog-page {
+    width: min(1180px, calc(100% - 40px));
+    margin: 0 auto 50px;
+}
+
+.catalog-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 35px 0 10px;
+}
+
+.catalog-toolbar h1 {
+    text-align: left;
+    margin: 0 0 8px;
+}
+
+.catalog-toolbar p {
+    margin: 0;
+    color: #63666b;
+}
+
+.admin-toggle,
+.small-button,
+.secondary-button,
+.danger-button,
+.action-button {
+    width: auto;
+    border-radius: 8px;
+}
+
+.admin-panel {
+    margin: 35px auto 0;
+    padding: 24px;
+    border: 2px solid #BAACD1;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.admin-panel h2 {
+    margin-top: 0;
+    color: #7559A3;
+}
+
+.book-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.book-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #7559A3;
+    font-weight: 700;
+}
+
+.book-form input,
+.book-form textarea,
+.quantity-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Lucida Console", monospace;
+}
+
+.book-form textarea {
+    resize: vertical;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #7559A3;
+    color: #7559A3;
+}
+
+.book-form label:nth-child(6),
+.book-form label:nth-child(7),
+.form-actions {
+    grid-column: 1 / -1;
+}
+
+.form-actions,
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.small-button {
+    padding: 9px 12px;
+    font-size: 12px;
+}
+
+.secondary-button {
+    background: #BAACD1;
+    color: #7559A3;
+}
+
+.danger-button {
+    background: #ef4444;
+}
+
+.price {
+    color: #7559A3;
+    font-weight: 700;
+}
+
+.stock {
+    color: #63666b;
+    font-size: 13px;
+}
+
+.product-page {
+    width: min(1050px, calc(100% - 40px));
+    margin: 60px auto;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 42px;
+    align-items: start;
+}
+
+.product-image img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product-info h1 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.book-author {
+    color: #63666b;
+    font-size: 18px;
+}
+
+.description {
+    color: #333;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.secondary-link {
+    display: inline-block;
+    margin-left: 16px;
+    color: #7559A3;
+}
+
+.page-status,
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.quantity-input {
+    max-width: 76px;
+    text-align: center;
+}
+
+.empty-cart {
+    color: #63666b;
+}
+
+.summary-total {
+    font-weight: 700;
+    color: #7559A3;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* кошик */
@@ -230,13 +398,13 @@ button:hover {
 }
 
 .cart-table {
-  flex: 1;
-  background: white;
-  border: 3px solid #BAACD1;
-  border-radius: 30px;
-  overflow: hidden;
-  border-collapse: separate;
-  border-spacing: 0;
+    flex: 1;
+    background: white;
+    border: 3px solid #BAACD1;
+    border-radius: 30px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .summary-cart {
@@ -244,15 +412,15 @@ button:hover {
     display: flex;
     flex-direction: column;
     gap: 25px;
-  background: white;
-  border: 3px solid #BAACD1;
-  border-radius: 30px;
-  overflow: hidden;
+    background: white;
+    border: 3px solid #BAACD1;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
 .promo-button {
     width: 100%;
-    padding: auto;
+    padding: 12px;
     border-radius: 50px;
     background: #BAACD1;
     color: #7559A3;
@@ -264,7 +432,7 @@ button:hover {
 .promo-input {
     width: 100%;
     padding: 10px 15px;
-    border: 1.5px solid #BAACD1;
+    border: 2px solid #BAACD1;
     border-radius: 50px;
     font-size: 15px;
     color: #aaa;
@@ -281,10 +449,9 @@ button:hover {
     font-size: 24px;
     cursor: pointer;
     transition: 0.3s;
-    cursor: pointer;
     box-sizing: border-box;
-    text-align: center; 
-     text-decoration: none;
+    text-align: center;
+    text-decoration: none;
 }
 
 .checkout-button:hover {
@@ -292,8 +459,8 @@ button:hover {
 }
 
 .cart-table thead {
-  background: white;
-  color: #7559A3;
+    background: white;
+    color: #7559A3;
 }
 
 .cart-table th {
@@ -327,7 +494,6 @@ button:hover {
 }
 
 
-
 .delete-button {
     width: auto;
     padding: 5px 8px;
@@ -335,7 +501,7 @@ button:hover {
     background: transparent;
     color: #ef4444;
     font-size: 25px;
-    
+
 }
 
 /* темна тема */
@@ -350,20 +516,20 @@ body.dark .cart-table {
 }
 
 body.dark .cart-table th {
-    background-color: #7559A3 ;
-    color: white ;
+    background-color: #7559A3;
+    color: white;
 }
 
 body.dark .cart-table td {
-    background-color: white ;
-    color: black ;
+    background-color: white;
+    color: black;
 }
 
 .dark header {
     background: #523e72;
 }
 
-.dark .book-card { 
+.dark .book-card {
     background: rgba(117, 89, 163, 0.5);
 
     color: white;
@@ -372,11 +538,11 @@ body.dark .cart-table td {
 /* сторінка про магазин */
 
 .about-text {
-  background: #7559A3;
-  border-radius: 20px;
-  padding: 48px;
-  position: relative;
-  overflow: hidden;
+    background: #7559A3;
+    border-radius: 20px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
 }
 
 
@@ -517,112 +683,111 @@ body.dark .cart-table td {
 /* parallax  */
 
 .parallax {
-  position: relative;
-  height: 360px;
-  overflow: hidden;
+    position: relative;
+    height: 360px;
+    overflow: hidden;
 }
 
 .banner-frame {
-  position: absolute;
-  top: 45px;
-  left: 55px;
-  right: 55px;
-  bottom: 25px;
-  border: 3px solid white;
-  border-radius: 30px;
-  z-index: 2;
+    position: absolute;
+    top: 45px;
+    left: 55px;
+    right: 55px;
+    bottom: 25px;
+    border: 3px solid white;
+    border-radius: 30px;
+    z-index: 2;
 }
 
 .layer.bg {
-  position: absolute;
-  inset: 0;
-  background: #C4AEE6;
-  z-index: 0;
+    position: absolute;
+    inset: 0;
+    background: #C4AEE6;
+    z-index: 0;
 }
 
 .banner-text {
-   position: relative;
-  z-index: 3;
+    position: relative;
+    z-index: 3;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-  height: 100%;
-  text-align: center;
+    height: 100%;
+    text-align: center;
 
-  color: white;
+    color: white;
 }
 
 .banner-text h1 {
-   font-size: 72px;
-  font-weight: 700;
-  margin: 0;
+    font-size: 72px;
+    font-weight: 700;
+    margin: 0;
 }
 
 .banner-text p {
-  font-size: 28px;
-  margin-top: 10px;
-  margin-bottom: 35px;
-  letter-spacing: 2px;
+    font-size: 28px;
+    margin-top: 10px;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
 }
 
 
 .btn {
- display: inline-block;
+    display: inline-block;
 
-  padding: 14px 70px;
+    padding: 14px 70px;
 
-  background: #E8B54D;
-  color: white;
+    background: #E8B54D;
+    color: white;
 
-  text-decoration: none;
-  border-radius: 40px;
+    text-decoration: none;
+    border-radius: 40px;
 
-  font-size: 22px;
-  font-weight: 600;
+    font-size: 22px;
+    font-weight: 600;
 
-  transition: 0.3s;
+    transition: 0.3s;
 }
 
 .btn:hover {
-  transform: scale(1.05);
-  background: white;
-  color:#7559A3;
-;
+    transform: scale(1.05);
+    background: white;
+    color: #7559A3;
 }
 
 .book-icons img {
-  position: absolute;
-  display: block;
-  height: auto;
+    position: absolute;
+    display: block;
+    height: auto;
 }
 
 .book1 {
-  width: 150px;
-  top: -5px;
-  left: -20px;
-  transform: rotate(-15deg);
+    width: 150px;
+    top: -5px;
+    left: -20px;
+    transform: rotate(-15deg);
 }
 
 .book2 {
-  width: 150px;
-  top: -30px;
-  right: 130px;
-  transform: rotate(12deg);
+    width: 150px;
+    top: -30px;
+    right: 130px;
+    transform: rotate(12deg);
 }
 
 .book3 {
-  width: 220px;
-  bottom: -25px;
-  left: 45px;
-  transform: rotate(-8deg);
+    width: 220px;
+    bottom: -25px;
+    left: 45px;
+    transform: rotate(-8deg);
 }
 
 .book4 {
-  width: 280px;
-  bottom: -35px;
-  right: -20px;
-  transform: rotate(3deg);
+    width: 280px;
+    bottom: -35px;
+    right: -20px;
+    transform: rotate(3deg);
 }
