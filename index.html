@@ -1,70 +1,46 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-      <meta charset="UTF-8">
-    <title>Головна</title>
+    <meta charset="UTF-8">
+    <title>BookStore</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <script src="js/home.js" defer></script>
 </head>
 <body>
-
 <header class="header">
-    <a class="logo" href="index.html">📚 BookStore</a>
-     <nav>
-        <a href="about.html">Про магазин</a><br>
-        <a href="catalog.html">Каталог</a><br>
-        <a href="account.html">Особистий кабінет</a><br>
+    <a class="logo" href="index.html">BookStore</a>
+    <nav>
+        <a href="about.html">Про магазин</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="account.html">Особистий кабінет</a>
         <a href="cart.html">Кошик</a>
     </nav>
-    <button class="theme-button">🌙</button>
+    <button class="theme-button" type="button">🌙</button>
 </header>
-<div class="parallax">
-    
-    <div class="layer bg"></div>
 
-    <div class="banner-frame">
-
-        <div class="banner-text">
-            <h1>BookStore</h1>
-            <p>Відкрий сторінки нових історій</p>
-            <a href="catalog.html" class="btn">Каталог</a>
+<main>
+    <section class="parallax">
+        <div class="layer bg"></div>
+        <div class="banner-frame">
+            <div class="banner-text">
+                <h1>BookStore</h1>
+                <p>Відкрий сторінки нових історій</p>
+                <a href="catalog.html" class="btn">Каталог</a>
+            </div>
+            <div class="book-icons">
+                <img class="book1" src="assets/book1.png" alt="">
+                <img class="book2" src="assets/book2.png" alt="">
+                <img class="book3" src="assets/book3.png" alt="">
+                <img class="book4" src="assets/book4.png" alt="">
+            </div>
         </div>
+    </section>
 
-        <div class="book-icons">
-            <img class="book1" src="assets/book1.png" alt="">
-            <img class="book2" src="assets/book2.png" alt="">
-            <img class="book3" src="assets/book3.png" alt="">
-            <img class="book4" src="assets/book4.png" alt="">
-        </div>
-
-    </div>
-</div>
-<div class="book-list">
-    <div class="book-card">
-        <a href="book.html">
-        <img src="https://content1.rozetka.com.ua/goods/images/big/520901450.jpg" alt="Гаррі Поттер" >
-        </a>
-    </div>
-    <div class="book-card">
-        <a href="book.html">
-        <img src="https://knigolove.ua/image/cache/catalog/1/x4Le5MnzjXOx_TNoObqEQQKwt1WNUlhk-1000x1000.png" alt="Мобі Дік" >
-        </a>
-    </div>
-    <div class="book-card">
-        <a href="book.html">
-        <img src="https://bi.ua/uploaded-images/products/size_650/604993_1.jpg" alt="Маленький принц" >
-        </a>
-    </div>
-    <div class="book-card">
-        <a href="book.html">
-        <img src="https://content2.rozetka.com.ua/goods/images/big/511797154.png" alt="Пушин">
-        </a>
-    </div>
-</div>
-    
-    
-
+    <section class="catalog-page">
+        <p id="home-status" class="visually-hidden">Завантаження книг...</p>
+        <div class="book-list" id="home-books"></div>
+    </section>
 </main>
-
 </body>
 </html>

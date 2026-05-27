@@ -1,84 +1,46 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-      <meta charset="UTF-8">
-    <title>Головна</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="uk">
-<head>
     <meta charset="UTF-8">
     <title>Кошик</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="js/cart.js" defer></script>
 </head>
 <body>
-
 <header class="header">
-    <a class="logo" href="index.html">📚 BookStore</a>
-     <nav>
-        <a href="about.html">Про магазин</a><br>
-        <a href="catalog.html">Каталог</a><br>
-        <a href="account.html">Особистий кабінет</a><br>
+    <a class="logo" href="index.html">BookStore</a>
+    <nav>
+        <a href="about.html">Про магазин</a>
+        <a href="catalog.html">Каталог</a>
+        <a href="account.html">Особистий кабінет</a>
         <a href="cart.html">Кошик</a>
     </nav>
-    <button class="theme-button">🌙</button>
+    <button class="theme-button" type="button">🌙</button>
 </header>
 
-
-<div class="cart-container">
+<main class="cart-container">
     <table class="cart-table">
-  <thead>
+        <thead>
         <tr>
             <th>Книга</th>
             <th>Ціна</th>
-            <th>К-ть</th>
+            <th>К-сть</th>
             <th>Видалити</th>
         </tr>
-    </thead>
+        </thead>
+        <tbody id="cart-items"></tbody>
+    </table>
 
-  <tbody>
-     <tr>
-            <td class="book-info">
-                <img src="https://content2.rozetka.com.ua/goods/images/big/511797154.png" alt="book">
-                <div>
-                    <p>Книга Киця на ім’я Пушин</p>
-                    <p>Pusheen. Автор — Клер Белтон</p>
-                </div>
-            </td>
-
-            <td>300 грн</td>
-            <td>1</td>
-            <td>
-                <button class="delete-button">×</button>
-            </td>
-        </tr>
-  </tbody>
-</table>
-<div class="summary-cart">
-  <h2>Оформлення замовлення</h2>
-
-    <input
-        type="text"
-        class="promo-input"
-        placeholder="Промокод"
-    >
-
-    <button class="promo-button">Застосувати</button>
-
-    <p>Всього: 300 грн</p>
-    <p>Знижка: 0</p>
-
-    <div class="summary-total">
-        До сплати 300 грн
-    </div>
-
-    <a href="success.html" class="checkout-button">Підтвердити замовлення</a>
-</div>
-</div>
-
+    <section class="summary-cart">
+        <h2>Оформлення замовлення</h2>
+        <input type="text" class="promo-input" id="promo-code" placeholder="Промокод">
+        <button class="promo-button" id="apply-promo" type="button">Застосувати</button>
+        <p id="cart-subtotal">Всього: 0 грн</p>
+        <p id="cart-discount">Знижка: 0 грн</p>
+        <div class="summary-total" id="cart-total">До сплати 0 грн</div>
+        <button class="checkout-button" id="checkout-button" type="button">Підтвердити замовлення</button>
+    </section>
+</main>
 </body>
 </html>
-</body>
