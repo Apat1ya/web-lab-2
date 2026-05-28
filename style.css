@@ -20,6 +20,8 @@ header {
     align-items: center;
     padding: 20px;
     font-family: "Lucida Console", monospace;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -50,6 +52,41 @@ nav a[aria-current="page"] {
     color: #F2BB54;
 }
 
+.menu-button {
+    display: none;
+    width: 44px;
+    height: 38px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 8px;
+    background: transparent;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-button span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.menu-open .menu-button span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-open .menu-button span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-open .menu-button span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .theme-button {
 
     background: transparent;
@@ -62,6 +99,59 @@ nav a[aria-current="page"] {
 
 }
 
+@media (max-width: 768px) {
+    header {
+        padding: 14px 18px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .menu-button {
+        display: flex;
+    }
+
+    .theme-button {
+        display: none;
+    }
+
+    header nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        background: #7559A3;
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 0.3s ease, opacity 0.2s ease;
+    }
+
+    header.menu-open nav {
+        max-height: 260px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    header nav a {
+        margin-left: 0;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .dark header nav {
+        background: #523e72;
+    }
+}
+
 /* каталог */
 .catalog {
     padding: 50px;
@@ -69,14 +159,14 @@ nav a[aria-current="page"] {
 
 .book-list {
     padding-top: 25px;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap;
 }
 
 .book-card {
-    width: 220px;
+    width: auto;
     background: white;
     border-radius: 8px;
     padding: 20px;
@@ -108,6 +198,13 @@ nav a[aria-current="page"] {
     margin-top: auto;
 }
 
+.book-card .buy-button {
+    border-radius: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 .buy-button {
     display: inline-block;
     margin-top: 15px;
@@ -115,7 +212,7 @@ nav a[aria-current="page"] {
     color: white;
     text-decoration: none;
     padding: 12px 25px;
-    border-radius: 8px;
+    border-radius: 40px;
     transition: 0.3s;
 }
 
@@ -324,7 +421,7 @@ button:hover {
     width: min(1050px, calc(100% - 40px));
     margin: 60px auto;
     display: grid;
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
     gap: 42px;
     align-items: start;
 }
@@ -394,8 +491,8 @@ button:hover {
 .cart-container {
     width: 80%;
     margin: 70px auto;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
     gap: 25px;
     align-items: flex-start;
 
@@ -551,13 +648,14 @@ body.dark .cart-table td {
 
 
 .about {
-    width: 75%;
+    width: 80%;
     margin: 50px auto 24px;
     background: #7559A3;
     border-radius: 20px;
     padding: 48px;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 .about::after {
@@ -591,7 +689,7 @@ body.dark .cart-table td {
     width: 80%;
     margin: 0 auto 24px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 16px;
 }
 
@@ -657,7 +755,7 @@ body.dark .cart-table td {
     width: 80%;
     margin: 0 auto 50px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 12px;
 }
 
@@ -799,4 +897,208 @@ body.dark .cart-table td {
     bottom: -35px;
     right: -20px;
     transform: translate3d(0, var(--book-scroll), 0) rotate(3deg);
+}
+
+@media (max-width: 900px) {
+    .product-page,
+    .cart-container {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-cart {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media (max-width: 768px) {
+    .catalog-page,
+    .product-page,
+    .cart-container,
+    .about,
+    .about-perk,
+    .video,
+    .about-stats {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .catalog-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .book-list {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 18px;
+    }
+
+    .cart-container {
+        margin: 36px auto;
+    }
+
+    .cart-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .about {
+        padding: 28px;
+    }
+
+    .parallax {
+        height: 320px;
+    }
+
+    .banner-frame {
+        top: 28px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        border-radius: 20px;
+    }
+
+    .banner-text h1 {
+        font-size: 42px;
+    }
+
+    .banner-text p {
+        max-width: 80%;
+        margin-bottom: 24px;
+        font-size: 18px;
+        line-height: 1.45;
+        letter-spacing: 0;
+    }
+
+    .btn {
+        padding: 12px 38px;
+        font-size: 18px;
+    }
+
+    .book1,
+    .book2 {
+        width: 90px;
+    }
+
+    .book3 {
+        width: 130px;
+    }
+
+    .book4 {
+        width: 160px;
+    }
+}
+
+@media (max-width: 640px) {
+    input,
+    .form button,
+    .book-form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .book-form {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions,
+    .card-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .small-button,
+    .secondary-button,
+    .danger-button,
+    .action-button {
+        width: 100%;
+    }
+
+    .product-page {
+        margin: 36px auto;
+    }
+
+    .product-info h1 {
+        font-size: 26px;
+    }
+
+    .about-perk,
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .about {
+        margin-top: 28px;
+        padding: 24px 20px;
+    }
+
+    .about::after {
+        content: none;
+    }
+
+    .about-text {
+        padding: 0;
+        background: transparent;
+        border-radius: 0;
+    }
+
+    .about-text h1 {
+        font-size: 26px;
+    }
+
+    .about-text p {
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: none;
+    }
+
+    .video iframe {
+        width: calc(100% - 32px);
+        height: 240px;
+        margin: 16px;
+    }
+
+    .parallax {
+        height: 300px;
+    }
+
+    .banner-frame {
+        top: 22px;
+        left: 14px;
+        right: 14px;
+        bottom: 18px;
+        border-radius: 16px;
+    }
+
+    .banner-text h1 {
+        font-size: 34px;
+    }
+
+    .banner-text p {
+        max-width: 88%;
+        margin-bottom: 20px;
+        font-size: 15px;
+        line-height: 1.45;
+    }
+
+    .btn {
+        padding: 10px 30px;
+        font-size: 16px;
+    }
+
+    .book2,
+    .book4 {
+        display: none;
+    }
+
+    .book1 {
+        width: 72px;
+        top: 4px;
+        left: -18px;
+    }
+
+    .book3 {
+        width: 105px;
+        bottom: -18px;
+        left: 10px;
+    }
 }

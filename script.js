@@ -18,7 +18,12 @@ function renderHeader() {
     header.className = "header";
     header.innerHTML = `
         <a class="logo" href="index.html">BookStore</a>
-        <nav>
+        <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="site-nav">
             ${links.map((link) => `
                 <a href="${link.href}"${link.href === currentPage ? ' aria-current="page"' : ""}>${link.label}</a>
             `).join("")}
@@ -35,6 +40,24 @@ function renderHeader() {
 
 document.addEventListener("DOMContentLoaded", () => {
     renderHeader();
+
+    const header = document.querySelector("header.header");
+    const menuButton = document.querySelector(".menu-button");
+    if (header && menuButton) {
+        menuButton.addEventListener("click", () => {
+            const isOpen = header.classList.toggle("menu-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        });
+
+        header.querySelectorAll("nav a").forEach((link) => {
+            link.addEventListener("click", () => {
+                header.classList.remove("menu-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open menu");
+            });
+        });
+    }
 
     const tabs = document.querySelectorAll(".tab");
     const forms = document.querySelectorAll(".form");
