@@ -23,7 +23,17 @@ async function start() {
 
 if (require.main === module) {
     start().catch((error) => {
-        console.error("Server failed to start:", error);
+        if (error.code === "28P01") {
+            console.error(
+                "Server failed to start: PostgreSQL authentication failed. Check DATABASE_URL or PGPASSWORD in .env."
+            );
+        } else if (error.code === "3D000") {
+            console.error(
+                "Server failed to start: PostgreSQL database does not exist. Create the bookstore database first."
+            );
+        } else {
+            console.error("Server failed to start:", error);
+        }
         process.exit(1);
     });
 }

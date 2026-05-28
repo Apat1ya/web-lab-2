@@ -34,3 +34,7 @@ build/
 
 ### Node.js ###
 node_modules/
+
+### Local environment ###
+.env
+.env.local
