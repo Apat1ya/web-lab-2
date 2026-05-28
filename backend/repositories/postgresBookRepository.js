@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 
 async function createPostgresBookRepository(options) {
-    const pool = new Pool({ connectionString: options.connectionString });
+    const pool = new Pool(options);
     await ensureSchema(pool);
 
     return {

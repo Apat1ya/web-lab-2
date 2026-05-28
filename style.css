@@ -46,6 +46,10 @@ nav a:hover {
     color: #F2BB54;
 }
 
+nav a[aria-current="page"] {
+    color: #F2BB54;
+}
+
 .theme-button {
 
     background: transparent;
@@ -686,6 +690,7 @@ body.dark .cart-table td {
     position: relative;
     height: 360px;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .banner-frame {
@@ -697,6 +702,7 @@ body.dark .cart-table td {
     border: 3px solid white;
     border-radius: 30px;
     z-index: 2;
+    will-change: transform;
 }
 
 .layer.bg {
@@ -709,6 +715,7 @@ body.dark .cart-table td {
 .banner-text {
     position: relative;
     z-index: 3;
+    will-change: transform;
 
     display: flex;
     flex-direction: column;
@@ -762,32 +769,34 @@ body.dark .cart-table td {
     position: absolute;
     display: block;
     height: auto;
+    --book-scroll: 0px;
+    will-change: transform;
 }
 
 .book1 {
     width: 150px;
     top: -5px;
     left: -20px;
-    transform: rotate(-15deg);
+    transform: translate3d(0, var(--book-scroll), 0) rotate(-15deg);
 }
 
 .book2 {
     width: 150px;
     top: -30px;
     right: 130px;
-    transform: rotate(12deg);
+    transform: translate3d(0, var(--book-scroll), 0) rotate(12deg);
 }
 
 .book3 {
     width: 220px;
     bottom: -25px;
     left: 45px;
-    transform: rotate(-8deg);
+    transform: translate3d(0, var(--book-scroll), 0) rotate(-8deg);
 }
 
 .book4 {
     width: 280px;
     bottom: -35px;
     right: -20px;
-    transform: rotate(3deg);
+    transform: translate3d(0, var(--book-scroll), 0) rotate(3deg);
 }

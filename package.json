@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Apat1ya/web-lab-2#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.13.1"
   }

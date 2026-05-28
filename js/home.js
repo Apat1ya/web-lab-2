@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const books = await response.json();
         homeStatus.textContent = books.length ? "Дані завантажені з PostgreSQL" : "Каталог порожній";
-        homeBooks.innerHTML = books.slice(0, 4).map((book) => `
+        homeBooks.innerHTML = books.slice(0, 8).map((book) => `
             <article class="book-card" data-id="${book.id}">
                 <a href="book.html?id=${encodeURIComponent(book.id)}">
                     <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}">

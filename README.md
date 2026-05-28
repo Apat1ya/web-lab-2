@@ -10,13 +10,15 @@ Static bookstore frontend with a Node/Express API and PostgreSQL storage.
    npm install
    ```
 
-2. Create a PostgreSQL database and set `DATABASE_URL`.
+2. Create a PostgreSQL database and configure local credentials.
 
-   Local default if `DATABASE_URL` is not set:
+   Copy `.env.example` to `.env`, then edit `PGPASSWORD` to match the password you set for your local `postgres` user. You can also replace the `PG*` values with one `DATABASE_URL` value:
 
    ```text
    postgres://postgres:postgres@localhost:5432/bookstore
    ```
+
+   The app falls back to those same local defaults if no `.env` or environment variables are provided.
 
 3. Apply schema and sample data:
 

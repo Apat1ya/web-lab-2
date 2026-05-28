@@ -1,4 +1,41 @@
+function renderHeader() {
+    const headerSlot = document.querySelector("[data-header]");
+    const existingHeader = document.querySelector("header.header");
+
+    if (!headerSlot && existingHeader) {
+        return;
+    }
+
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const links = [
+        { href: "about.html", label: "&#1055;&#1088;&#1086; &#1084;&#1072;&#1075;&#1072;&#1079;&#1080;&#1085;" },
+        { href: "catalog.html", label: "&#1050;&#1072;&#1090;&#1072;&#1083;&#1086;&#1075;" },
+        { href: "account.html", label: "&#1054;&#1089;&#1086;&#1073;&#1080;&#1089;&#1090;&#1080;&#1081; &#1082;&#1072;&#1073;&#1110;&#1085;&#1077;&#1090;" },
+        { href: "cart.html", label: "&#1050;&#1086;&#1096;&#1080;&#1082;" },
+    ];
+
+    const header = document.createElement("header");
+    header.className = "header";
+    header.innerHTML = `
+        <a class="logo" href="index.html">BookStore</a>
+        <nav>
+            ${links.map((link) => `
+                <a href="${link.href}"${link.href === currentPage ? ' aria-current="page"' : ""}>${link.label}</a>
+            `).join("")}
+        </nav>
+        <button class="theme-button" type="button" aria-label="Toggle theme">&#127769;</button>
+    `;
+
+    if (headerSlot) {
+        headerSlot.replaceWith(header);
+    } else {
+        document.body.prepend(header);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    renderHeader();
+
     const tabs = document.querySelectorAll(".tab");
     const forms = document.querySelectorAll(".form");
 
@@ -18,10 +55,54 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeButton) {
         themeButton.addEventListener("click", () => {
             document.body.classList.toggle("dark");
-            themeButton.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+            themeButton.innerHTML = document.body.classList.contains("dark") ? "&#9728;&#65039;" : "&#127769;";
         });
     }
 });
+
+const bannerMotion = {
+    mouseX: 0,
+    mouseY: 0,
+    ticking: false,
+};
+
+function scheduleBannerParallax() {
+    if (bannerMotion.ticking) {
+        return;
+    }
+
+    bannerMotion.ticking = true;
+    requestAnimationFrame(updateBannerParallax);
+}
+
+function updateBannerParallax() {
+    bannerMotion.ticking = false;
+
+    const parallax = document.querySelector(".parallax");
+    if (!parallax) {
+        return;
+    }
+
+    const rect = parallax.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const scrollDistance = Math.max(0, Math.min(rect.height + viewportHeight, -rect.top));
+    const bookSpeeds = [0.65, 0.9, 1.15, 0.8];
+
+    parallax.querySelectorAll(".book-icons img").forEach((book, index) => {
+        const speed = bookSpeeds[index] || 0.75;
+        book.style.setProperty("--book-scroll", `${scrollDistance * -speed}px`);
+    });
+
+    const frame = parallax.querySelector(".banner-frame");
+    if (frame) {
+        frame.style.transform = `translate3d(${bannerMotion.mouseX * 0.01}px, ${bannerMotion.mouseY * 0.01}px, 0)`;
+    }
+
+    const text = parallax.querySelector(".banner-text");
+    if (text) {
+        text.style.transform = `translate3d(${bannerMotion.mouseX * 0.005}px, ${bannerMotion.mouseY * 0.005}px, 0)`;
+    }
+}
 
 document.addEventListener("mousemove", (event) => {
     const x = window.innerWidth / 2 - event.clientX;
@@ -32,13 +113,11 @@ document.addEventListener("mousemove", (event) => {
         element.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(var(--r)) scale(var(--s))`;
     });
 
-    const frame = document.querySelector(".banner-frame");
-    if (frame) {
-        frame.style.transform = `translate(${x * 0.01}px, ${y * 0.01}px)`;
-    }
-
-    const text = document.querySelector(".banner-text");
-    if (text) {
-        text.style.transform = `translate(${x * 0.005}px, ${y * 0.005}px)`;
-    }
+    bannerMotion.mouseX = x;
+    bannerMotion.mouseY = y;
+    scheduleBannerParallax();
 });
+
+document.addEventListener("scroll", scheduleBannerParallax, { passive: true });
+window.addEventListener("resize", scheduleBannerParallax);
+document.addEventListener("DOMContentLoaded", scheduleBannerParallax);
