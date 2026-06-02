@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         homeBooks.innerHTML = books.slice(0, 8).map((book) => `
             <article class="book-card" data-id="${book.id}">
                 <a href="book.html?id=${encodeURIComponent(book.id)}">
-                    <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}">
+                    <img src="${escapeAttribute(getThumbnailUrl(book.imageUrl))}" loading="lazy" decoding="async" alt="${escapeAttribute(book.title)}">
                 </a>
-                <h3>${escapeHtml(book.title)}</h3>
+                <h2>${escapeHtml(book.title)}</h2>
                 <p class="price">${Number(book.price).toFixed(0)} грн</p>
                 <button type="button" class="buy-button action-button" data-action="cart">Додати в кошик</button>
             </article>
@@ -67,4 +67,9 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
     return escapeHtml(value);
+}
+
+function getThumbnailUrl(imageUrl) {
+    const localCover = String(imageUrl || "").match(/^assets\/covers\/([^/.]+)\.[^/]+$/);
+    return localCover ? `assets/covers/thumbs/${localCover[1]}.webp` : imageUrl || "assets/decor/book1.webp";
 }

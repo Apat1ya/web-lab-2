@@ -88,6 +88,7 @@ const bannerMotion = {
     mouseY: 0,
     ticking: false,
 };
+const parallax = document.querySelector(".parallax");
 
 function scheduleBannerParallax() {
     if (bannerMotion.ticking) {
@@ -101,7 +102,6 @@ function scheduleBannerParallax() {
 function updateBannerParallax() {
     bannerMotion.ticking = false;
 
-    const parallax = document.querySelector(".parallax");
     if (!parallax) {
         return;
     }
@@ -127,20 +127,14 @@ function updateBannerParallax() {
     }
 }
 
-document.addEventListener("mousemove", (event) => {
-    const x = window.innerWidth / 2 - event.clientX;
-    const y = window.innerHeight / 2 - event.clientY;
-
-    document.querySelectorAll(".decor").forEach((element, index) => {
-        const speed = (index + 1) * 0.02;
-        element.style.transform = `translate(${x * speed}px, ${y * speed}px) rotate(var(--r)) scale(var(--s))`;
+if (parallax && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    parallax.addEventListener("mousemove", (event) => {
+        bannerMotion.mouseX = window.innerWidth / 2 - event.clientX;
+        bannerMotion.mouseY = window.innerHeight / 2 - event.clientY;
+        scheduleBannerParallax();
     });
 
-    bannerMotion.mouseX = x;
-    bannerMotion.mouseY = y;
-    scheduleBannerParallax();
-});
-
-document.addEventListener("scroll", scheduleBannerParallax, { passive: true });
-window.addEventListener("resize", scheduleBannerParallax);
-document.addEventListener("DOMContentLoaded", scheduleBannerParallax);
+    document.addEventListener("scroll", scheduleBannerParallax, { passive: true });
+    window.addEventListener("resize", scheduleBannerParallax);
+    document.addEventListener("DOMContentLoaded", scheduleBannerParallax);
+}

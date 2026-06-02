@@ -38,7 +38,7 @@ function renderBook(book) {
     document.title = book.title;
     details.innerHTML = `
         <div class="product-image">
-            <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}">
+            <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" decoding="async" alt="${escapeAttribute(book.title)}">
         </div>
         <div class="product-info">
             <h1>${escapeHtml(book.title)}</h1>

@@ -189,8 +189,9 @@ nav a[aria-current="page"] {
     border: 1px solid #F2BB54;
 }
 
-.book-card h3 {
+.book-card h2 {
     min-height: 48px;
+    font-size: 1.17em;
 }
 
 .book-card .card-actions,
@@ -209,7 +210,7 @@ nav a[aria-current="page"] {
     display: inline-block;
     margin-top: 15px;
     background: #F2BB54;
-    color: white;
+    color: #523e72;
     text-decoration: none;
     padding: 12px 25px;
     border-radius: 40px;
@@ -218,12 +219,6 @@ nav a[aria-current="page"] {
 
 .buy-button:hover {
     background: #7559A3;
-}
-
-.auth-tabs {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #1f2937;
 }
 
 /* форма */
@@ -830,6 +825,7 @@ body.dark .cart-table td {
     font-size: 72px;
     font-weight: 700;
     margin: 0;
+    color: #523e72;
 }
 
 .banner-text p {
@@ -837,6 +833,7 @@ body.dark .cart-table td {
     margin-top: 10px;
     margin-bottom: 35px;
     letter-spacing: 2px;
+    color: #523e72;
 }
 
 
@@ -846,7 +843,7 @@ body.dark .cart-table td {
     padding: 14px 70px;
 
     background: #E8B54D;
-    color: white;
+    color: #523e72;
 
     text-decoration: none;
     border-radius: 40px;

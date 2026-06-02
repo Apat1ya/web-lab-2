@@ -3,6 +3,8 @@ const path = require("node:path");
 const { createBooksRouter } = require("./routes/books");
 
 const publicRoot = path.resolve(__dirname, "..");
+const STATIC_CACHE_MS = 24 * 60 * 60 * 1000;
+const ASSET_CACHE_MS = 365 * STATIC_CACHE_MS;
 const pages = new Set([
     "about.html",
     "account.html",
@@ -39,12 +41,18 @@ function createApp({ repository }) {
 
     app.use("/api/books", createBooksRouter(repository));
 
-    app.use("/assets", express.static(path.join(publicRoot, "assets")));
-    app.use("/js", express.static(path.join(publicRoot, "js")));
+    app.use("/assets", express.static(path.join(publicRoot, "assets"), {
+        maxAge: ASSET_CACHE_MS,
+        immutable: true,
+    }));
+    app.use("/js", express.static(path.join(publicRoot, "js"), { maxAge: STATIC_CACHE_MS }));
 
-    app.get(["/", "/style.css", "/script.js"], (req, res) => {
-        const fileName = req.path === "/" ? "index.html" : req.path.slice(1);
-        res.sendFile(path.join(publicRoot, fileName));
+    app.get("/", (req, res) => {
+        res.sendFile(path.join(publicRoot, "index.html"));
+    });
+
+    app.get(["/style.css", "/script.js"], (req, res) => {
+        res.sendFile(path.join(publicRoot, req.path.slice(1)), { maxAge: STATIC_CACHE_MS });
     });
 
     app.get("/:page", (req, res, next) => {

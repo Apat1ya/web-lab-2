@@ -7,6 +7,7 @@ function createBooksRouter(repository) {
     router.get("/", async (req, res, next) => {
         try {
             const books = await repository.list();
+            setReadCache(res);
             res.json(books);
         } catch (error) {
             next(error);
@@ -20,6 +21,7 @@ function createBooksRouter(repository) {
                 return res.status(404).json({ error: "Book not found" });
             }
 
+            setReadCache(res);
             res.json(book);
         } catch (error) {
             next(error);
@@ -64,6 +66,10 @@ function createBooksRouter(repository) {
     });
 
     return router;
+}
+
+function setReadCache(res) {
+    res.set("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
 }
 
 module.exports = { createBooksRouter };

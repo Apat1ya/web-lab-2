@@ -39,7 +39,7 @@ function renderCart() {
         elements.items.innerHTML = cart.map((item) => `
             <tr data-id="${item.id}">
                 <td class="book-info">
-                    <img src="${escapeAttribute(item.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(item.title)}">
+                    <img src="${escapeAttribute(getThumbnailUrl(item.imageUrl))}" loading="lazy" decoding="async" alt="${escapeAttribute(item.title)}">
                     <div>
                         <p>${escapeHtml(item.title)}</p>
                         <p>${escapeHtml(item.author)}</p>
@@ -128,4 +128,9 @@ function escapeHtml(value) {
 
 function escapeAttribute(value) {
     return escapeHtml(value);
+}
+
+function getThumbnailUrl(imageUrl) {
+    const localCover = String(imageUrl || "").match(/^assets\/covers\/([^/.]+)\.[^/]+$/);
+    return localCover ? `assets/covers/thumbs/${localCover[1]}.webp` : imageUrl || "assets/decor/book1.webp";
 }

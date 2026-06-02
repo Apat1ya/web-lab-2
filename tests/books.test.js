@@ -10,6 +10,7 @@ test("books API supports CRUD operations", async () => {
     try {
         let response = await fetch(`${baseUrl}/api/books`);
         assert.equal(response.status, 200);
+        assert.equal(response.headers.get("cache-control"), "public, max-age=60, stale-while-revalidate=300");
         assert.deepEqual(await response.json(), []);
 
         response = await fetch(`${baseUrl}/api/books`, {
@@ -81,6 +82,12 @@ test("app serves frontend files without exposing repo metadata", async () => {
         response = await fetch(`${baseUrl}/style.css`);
         assert.equal(response.status, 200);
         assert.match(response.headers.get("content-type"), /text\/css/);
+        assert.equal(response.headers.get("cache-control"), "public, max-age=86400");
+
+        response = await fetch(`${baseUrl}/assets/decor/book1.webp`);
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get("content-type"), "image/webp");
+        assert.equal(response.headers.get("cache-control"), "public, max-age=31536000, immutable");
 
         response = await fetch(`${baseUrl}/package.json`);
         assert.equal(response.status, 404);
