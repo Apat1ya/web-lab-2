@@ -31,10 +31,13 @@ header {
     font-size: 20px;
 }
 
-nav {
+nav ul {
     display: flex;
     align-items: center;
     gap: 15px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 nav a {
@@ -46,10 +49,16 @@ nav a {
 
 nav a:hover {
     color: #F2BB54;
+    background-color: #523e72;
 }
 
 nav a[aria-current="page"] {
     color: #F2BB54;
+}
+
+nav a:active {
+    color: #523e72;
+    background-color: #F2BB54;
 }
 
 .menu-button {
@@ -141,7 +150,14 @@ nav a[aria-current="page"] {
         pointer-events: auto;
     }
 
+    header nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
     header nav a {
+        display: block;
         margin-left: 0;
         padding: 15px 20px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.16);

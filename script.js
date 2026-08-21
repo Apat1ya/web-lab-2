@@ -33,9 +33,11 @@ function renderHeader() {
             <span></span>
         </button>
         <nav id="site-nav">
-            ${links.map((link) => `
-                <a href="${link.href}"${link.href === currentPage ? ' aria-current="page"' : ""}>${link.label}</a>
-            `).join("")}
+            <ul>
+                ${links.map((link) => `
+                    <li><a href="${link.href}"${link.href === currentPage ? ' aria-current="page"' : ""}>${link.label}</a></li>
+                `).join("")}
+            </ul>
         </nav>
         <button class="theme-button" type="button" aria-label="Toggle theme">&#127769;</button>
     `;
