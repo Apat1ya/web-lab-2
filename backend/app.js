@@ -34,7 +34,7 @@ function createApp({ repository }) {
     app.use(express.json());
 
     app.get("/api/health", (req, res) => {
-        res.json({ status: "ok", database: "postgresql" });
+        res.json({ status: "ok", storage: repository.kind || "custom" });
     });
 
     app.use("/api/books", createBooksRouter(repository));

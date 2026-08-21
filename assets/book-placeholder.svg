@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 560" role="img" aria-labelledby="title description">
+    <title id="title">BookStore</title>
+    <desc id="description">Placeholder book cover</desc>
+    <defs>
+        <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7559a3"/>
+            <stop offset="1" stop-color="#b49add"/>
+        </linearGradient>
+    </defs>
+    <rect width="420" height="560" rx="22" fill="url(#cover)"/>
+    <rect x="28" y="28" width="364" height="504" rx="14" fill="none" stroke="#fff" stroke-width="5" opacity=".85"/>
+    <path d="M112 180c42-16 72-8 98 12 26-20 56-28 98-12v170c-42-16-72-8-98 12-26-20-56-28-98-12z" fill="#f2bb54"/>
+    <path d="M210 192v170" fill="none" stroke="#fff" stroke-width="5" opacity=".9"/>
+    <text x="210" y="425" fill="#fff" font-family="monospace" font-size="36" font-weight="700" text-anchor="middle">BookStore</text>
+    <text x="210" y="466" fill="#fff" font-family="monospace" font-size="18" text-anchor="middle" opacity=".85">обкладинка книги</text>
+</svg>

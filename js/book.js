@@ -1,7 +1,7 @@
 const details = document.getElementById("book-details");
 const params = new URLSearchParams(window.location.search);
 const bookId = params.get("id");
-const API_BASE = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+const API_BASE = getApiBaseUrl();
 
 document.addEventListener("DOMContentLoaded", loadBook);
 

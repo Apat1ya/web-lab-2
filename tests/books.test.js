@@ -1,6 +1,7 @@
 const assert = require("node:assert/strict");
 const test = require("node:test");
 const { createApp } = require("../backend/app");
+const { createMemoryBookRepository } = require("../backend/repositories/memoryBookRepository");
 
 test("books API supports CRUD operations", async () => {
     const repository = createTestRepository();
@@ -86,6 +87,25 @@ test("app serves frontend files without exposing repo metadata", async () => {
         assert.equal(response.status, 404);
     } finally {
         await new Promise((resolve) => server.close(resolve));
+    }
+});
+
+test("demo repository supplies the catalog when PostgreSQL is unavailable", async () => {
+    const repository = createMemoryBookRepository();
+    const server = createApp({ repository }).listen(0);
+    const baseUrl = `http://127.0.0.1:${server.address().port}`;
+
+    try {
+        let response = await fetch(`${baseUrl}/api/health`);
+        assert.equal(response.status, 200);
+        assert.deepEqual(await response.json(), { status: "ok", storage: "memory" });
+
+        response = await fetch(`${baseUrl}/api/books`);
+        assert.equal(response.status, 200);
+        assert.equal((await response.json()).length, 8);
+    } finally {
+        await new Promise((resolve) => server.close(resolve));
+        await repository.close();
     }
 });
 

@@ -1,3 +1,12 @@
+function getApiBaseUrl(location = window.location) {
+    const isLocalStaticPreview = (
+        location.protocol === "file:"
+        || (["localhost", "127.0.0.1"].includes(location.hostname) && location.port !== "3000")
+    );
+
+    return isLocalStaticPreview ? "http://localhost:3000" : "";
+}
+
 function renderHeader() {
     const headerSlot = document.querySelector("[data-header]");
     const existingHeader = document.querySelector("header.header");
@@ -37,6 +46,16 @@ function renderHeader() {
         document.body.prepend(header);
     }
 }
+
+document.addEventListener("error", (event) => {
+    const image = event.target;
+    if (!(image instanceof HTMLImageElement) || image.dataset.fallbackApplied === "true") {
+        return;
+    }
+
+    image.dataset.fallbackApplied = "true";
+    image.src = "assets/book-placeholder.svg";
+}, true);
 
 document.addEventListener("DOMContentLoaded", () => {
     renderHeader();

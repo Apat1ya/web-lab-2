@@ -1,6 +1,6 @@
 const homeBooks = document.getElementById("home-books");
 const homeStatus = document.getElementById("home-status");
-const API_BASE = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+const API_BASE = getApiBaseUrl();
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         const books = await response.json();
-        homeStatus.textContent = books.length ? "Дані завантажені з PostgreSQL" : "Каталог порожній";
+        homeStatus.textContent = books.length ? `Показано ${Math.min(books.length, 8)} книг` : "Каталог порожній";
         homeBooks.innerHTML = books.slice(0, 8).map((book) => `
             <article class="book-card" data-id="${book.id}">
                 <a href="book.html?id=${encodeURIComponent(book.id)}">
@@ -30,8 +30,15 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         });
     } catch (error) {
-        homeStatus.textContent = error.message;
-        homeBooks.innerHTML = "";
+        homeStatus.textContent = "Каталог тимчасово недоступний";
+        homeBooks.innerHTML = `
+            <div class="load-error" role="alert">
+                <h3>Не вдалося завантажити книги</h3>
+                <p>Запустіть сайт командою <code>npm start</code> і оновіть сторінку.</p>
+                <button class="action-button" type="button" id="retry-books">Спробувати ще раз</button>
+            </div>
+        `;
+        document.getElementById("retry-books").addEventListener("click", () => window.location.reload());
     }
 });
 

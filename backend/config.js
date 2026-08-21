@@ -3,6 +3,9 @@ require("dotenv").config({ quiet: true });
 const config = {
     port: Number(process.env.PORT || 3000),
     postgres: getPostgresConfig(),
+    allowMemoryFallback:
+        process.env.USE_MEMORY_DATABASE === "true"
+        || (process.env.NODE_ENV !== "production" && !process.env.DATABASE_URL),
 };
 
 function getPostgresConfig() {

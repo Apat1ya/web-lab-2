@@ -5,6 +5,8 @@ async function createPostgresBookRepository(options) {
     await ensureSchema(pool);
 
     return {
+        kind: "postgresql",
+
         async list() {
             const result = await pool.query(
                 `SELECT id, title, author, price, stock, description, image_url AS "imageUrl"

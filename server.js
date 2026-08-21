@@ -1,9 +1,10 @@
 const { createApp } = require("./backend/app");
 const { config } = require("./backend/config");
 const { createPostgresBookRepository } = require("./backend/repositories/postgresBookRepository");
+const { createMemoryBookRepository } = require("./backend/repositories/memoryBookRepository");
 
 async function start() {
-    const repository = await createPostgresBookRepository(config.postgres);
+    const repository = await createRepository();
     const app = createApp({ repository });
 
     const server = app.listen(config.port, () => {
@@ -19,6 +20,22 @@ async function start() {
 
     process.on("SIGINT", shutdown);
     process.on("SIGTERM", shutdown);
+}
+
+async function createRepository() {
+    try {
+        return await createPostgresBookRepository(config.postgres);
+    } catch (error) {
+        if (!config.allowMemoryFallback) {
+            throw error;
+        }
+
+        console.warn(
+            "PostgreSQL is unavailable; using the in-memory demo catalog. "
+            + "Changes will be lost when the server stops."
+        );
+        return createMemoryBookRepository();
+    }
 }
 
 if (require.main === module) {
@@ -38,4 +55,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { start };
+module.exports = { start, createRepository };

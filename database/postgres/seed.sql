@@ -14,7 +14,7 @@ VALUES
         250.00,
         8,
         'A classic sea adventure novel.',
-        'https://knigolove.ua/image/cache/catalog/1/x4Le5MnzjXOx_TNoObqEQQKwt1WNUlhk-1000x1000.png'
+        'assets/moby-dick-cover.svg'
     ),
     (
         'The Little Prince',
@@ -46,7 +46,7 @@ VALUES
         230.00,
         7,
         'A classic novel about love and social expectations.',
-        'https://oxford-book.com.ua/121978-large_default/kniga-pride-and-prejudice-jane-austen.jpg'
+        'assets/pride-and-prejudice-cover.svg'
     ),
     (
         'Dune',

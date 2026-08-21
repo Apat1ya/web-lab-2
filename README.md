@@ -10,7 +10,17 @@ Static bookstore frontend with a Node/Express API and PostgreSQL storage.
    npm install
    ```
 
-2. Create a PostgreSQL database and configure local credentials.
+2. Start the app:
+
+   ```sh
+   npm start
+   ```
+
+   For a quick local preview, the app automatically uses an in-memory demo
+   catalog when PostgreSQL is unavailable. Changes made through the API are
+   reset when the server restarts.
+
+3. For persistent storage, create a PostgreSQL database and configure local credentials.
 
    Copy `.env.example` to `.env`, then edit `PGPASSWORD` to match the password you set for your local `postgres` user. You can also replace the `PG*` values with one `DATABASE_URL` value:
 
@@ -20,13 +30,13 @@ Static bookstore frontend with a Node/Express API and PostgreSQL storage.
 
    The app falls back to those same local defaults if no `.env` or environment variables are provided.
 
-3. Apply schema and sample data:
+4. Apply schema and sample data:
 
    ```sh
    npm run db:seed
    ```
 
-4. Start the app:
+5. Start the app if it is not already running:
 
    ```sh
    npm start

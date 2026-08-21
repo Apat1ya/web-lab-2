@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="title description">
+  <title id="title">Moby-Dick book cover</title>
+  <desc id="description">A white whale beneath a sailing ship on a dark blue sea.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#071d33"/>
+      <stop offset="1" stop-color="#1f6980"/>
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#174e67"/>
+      <stop offset="1" stop-color="#061925"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="900" fill="url(#sky)"/>
+  <circle cx="462" cy="174" r="78" fill="#f1e6c5" opacity=".92"/>
+  <path d="M0 520 Q90 470 180 520 T360 520 T540 520 T720 520 V900 H0Z" fill="url(#sea)"/>
+  <g fill="none" stroke="#89b9c5" stroke-width="8" opacity=".65">
+    <path d="M-30 592 Q60 548 150 592 T330 592 T510 592 T690 592"/>
+    <path d="M-60 692 Q30 648 120 692 T300 692 T480 692 T660 692"/>
+  </g>
+  <g transform="translate(105 345)">
+    <path d="M0 102 H285 L240 145 H38Z" fill="#1b1210"/>
+    <path d="M138 0 V105" stroke="#211713" stroke-width="10"/>
+    <path d="M147 13 Q230 35 248 93 H147Z" fill="#efe3c2"/>
+    <path d="M128 28 Q65 42 37 94 H128Z" fill="#d6c79f"/>
+  </g>
+  <g transform="translate(65 585)">
+    <path d="M48 123 Q86 43 201 61 Q307 3 437 72 Q472 91 460 126 Q447 166 389 166 H105 Q38 166 48 123Z" fill="#eef1e9"/>
+    <path d="M410 72 Q480 21 485 79 Q486 116 452 126" fill="#eef1e9"/>
+    <circle cx="373" cy="88" r="7" fill="#071d33"/>
+    <path d="M214 59 Q247 22 279 60" fill="none" stroke="#cbd8d5" stroke-width="10"/>
+  </g>
+  <text x="300" y="105" fill="#f6e9c5" font-family="Georgia, serif" font-size="68" font-weight="700" text-anchor="middle" letter-spacing="4">MOBY-DICK</text>
+  <text x="300" y="152" fill="#b9d7dc" font-family="Arial, sans-serif" font-size="23" text-anchor="middle" letter-spacing="7">HERMAN MELVILLE</text>
+  <rect x="24" y="24" width="552" height="852" rx="4" fill="none" stroke="#e4d2a6" stroke-width="3" opacity=".8"/>
+</svg>

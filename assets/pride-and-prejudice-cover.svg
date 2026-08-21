@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" role="img" aria-labelledby="title description">
+  <title id="title">Pride and Prejudice book cover</title>
+  <desc id="description">An elegant floral classic book cover in burgundy and cream.</desc>
+  <defs>
+    <radialGradient id="paper" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#fff9e9"/>
+      <stop offset="1" stop-color="#e7d4ac"/>
+    </radialGradient>
+    <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.3" fill="#8d2638" opacity=".25"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="900" fill="#7c1f32"/>
+  <rect x="34" y="34" width="532" height="832" rx="250" fill="url(#paper)"/>
+  <rect x="34" y="34" width="532" height="832" rx="250" fill="url(#dots)"/>
+  <g fill="none" stroke="#7c1f32" stroke-width="6">
+    <rect x="56" y="56" width="488" height="788" rx="230"/>
+    <rect x="73" y="73" width="454" height="754" rx="215" stroke-width="2"/>
+  </g>
+  <g fill="#b89245" stroke="#7c1f32" stroke-width="3">
+    <path d="M300 665 C220 610 140 650 141 735 C215 735 266 709 300 665Z"/>
+    <path d="M300 665 C380 610 460 650 459 735 C385 735 334 709 300 665Z"/>
+    <path d="M300 665 C255 590 268 530 300 487 C332 530 345 590 300 665Z"/>
+    <circle cx="300" cy="665" r="26" fill="#7c1f32" stroke="#b89245"/>
+  </g>
+  <g fill="#7c1f32">
+    <circle cx="189" cy="220" r="22"/>
+    <circle cx="411" cy="220" r="22"/>
+    <path d="M189 243 Q215 293 262 316 Q211 322 173 289Z"/>
+    <path d="M411 243 Q385 293 338 316 Q389 322 427 289Z"/>
+  </g>
+  <text x="300" y="382" fill="#64162a" font-family="Georgia, serif" font-size="70" font-weight="700" text-anchor="middle">PRIDE</text>
+  <text x="300" y="435" fill="#9a6a2f" font-family="Georgia, serif" font-size="28" font-style="italic" text-anchor="middle">and</text>
+  <text x="300" y="505" fill="#64162a" font-family="Georgia, serif" font-size="58" font-weight="700" text-anchor="middle">PREJUDICE</text>
+  <path d="M185 548 H415" stroke="#9a6a2f" stroke-width="3"/>
+  <text x="300" y="585" fill="#64162a" font-family="Arial, sans-serif" font-size="24" text-anchor="middle" letter-spacing="6">JANE AUSTEN</text>
+</svg>

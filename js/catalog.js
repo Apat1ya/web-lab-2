@@ -1,4 +1,4 @@
-const API_BASE = window.location.protocol === "file:" ? "http://localhost:3000" : "";
+const API_BASE = getApiBaseUrl();
 const API_URL = `${API_BASE}/api/books`;
 
 const state = {
