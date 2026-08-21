@@ -37,17 +37,21 @@ function validateBookPayload(body, requireAllFields) {
     validateString(payload, "description");
     validateString(payload, "imageUrl");
 
+    for (const field of ["title", "author"]) {
+        if (payload[field] !== undefined && payload[field].trim() === "") {
+            throw httpError(400, `Field '${field}' must not be empty`);
+        }
+    }
+
     if (payload.price !== undefined) {
-        payload.price = Number(payload.price);
-        if (!Number.isFinite(payload.price) || payload.price < 0) {
-            throw httpError(400, "Field 'price' must be a positive number");
+        if (typeof payload.price !== "number" || !Number.isFinite(payload.price) || payload.price < 0) {
+            throw httpError(400, "Field 'price' must be a non-negative number");
         }
     }
 
     if (payload.stock !== undefined) {
-        payload.stock = Number(payload.stock);
-        if (!Number.isInteger(payload.stock) || payload.stock < 0) {
-            throw httpError(400, "Field 'stock' must be a positive integer");
+        if (typeof payload.stock !== "number" || !Number.isInteger(payload.stock) || payload.stock < 0) {
+            throw httpError(400, "Field 'stock' must be a non-negative integer");
         }
     }
 

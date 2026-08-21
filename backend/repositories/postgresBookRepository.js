@@ -1,11 +1,17 @@
 const { Pool } = require("pg");
+const { validatePostgresConfig } = require("../config");
 
 async function createPostgresBookRepository(options) {
+    validatePostgresConfig(options);
     const pool = new Pool(options);
     await ensureSchema(pool);
 
     return {
         kind: "postgresql",
+
+        async health() {
+            await pool.query("SELECT 1");
+        },
 
         async list() {
             const result = await pool.query(

@@ -10,39 +10,51 @@ Static bookstore frontend with a Node/Express API and PostgreSQL storage.
    npm install
    ```
 
-2. Start the app:
+2. Copy `.env.example` to `.env`. The example contains the connection values
+   used by the Compose PostgreSQL service and the application port. Change the
+   password for any non-local environment. `DATABASE_URL` can be used instead
+   of the individual `PG*` variables.
+
+3. Start PostgreSQL in Docker:
 
    ```sh
-   npm start
+   docker compose up -d
    ```
 
-   For a quick local preview, the app automatically uses an in-memory demo
-   catalog when PostgreSQL is unavailable. Changes made through the API are
-   reset when the server restarts.
-
-3. For persistent storage, create a PostgreSQL database and configure local credentials.
-
-   Copy `.env.example` to `.env`, then edit `PGPASSWORD` to match the password you set for your local `postgres` user. You can also replace the `PG*` values with one `DATABASE_URL` value:
-
-   ```text
-   postgres://postgres:postgres@localhost:5432/bookstore
-   ```
-
-   The app falls back to those same local defaults if no `.env` or environment variables are provided.
-
-4. Apply schema and sample data:
+4. Apply `database/postgres/schema.sql` and then load the idempotent sample data
+   from `database/postgres/seed.sql`:
 
    ```sh
    npm run db:seed
    ```
 
-5. Start the app if it is not already running:
+5. Start the app:
 
    ```sh
    npm start
    ```
 
-The server listens on `PORT` when provided by the deployment platform, otherwise `3000`.
+   The server uses PostgreSQL only. If the connection settings are missing or
+   PostgreSQL is unavailable, startup fails with an error instead of using
+   temporary in-memory data.
+
+6. Run the server-side tests (the API tests use a test-only fake repository and
+   do not require PostgreSQL):
+
+   ```sh
+   npm test
+   ```
+
+The server listens on `PORT` when provided, otherwise on port `3000`.
+
+## Books API
+
+- `GET /api/books` — list books
+- `GET /api/books/:id` — get one book
+- `POST /api/books` — create a book
+- `PUT /api/books/:id` — update a book
+- `DELETE /api/books/:id` — delete a book
+- `GET /api/health` — check the application and PostgreSQL connection
 
 ## Full app deployment
 

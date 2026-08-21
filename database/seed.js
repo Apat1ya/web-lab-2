@@ -1,7 +1,7 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const { Pool } = require("pg");
-const { config } = require("../backend/config");
+const { config, validatePostgresConfig } = require("../backend/config");
 
 async function runSqlFile(pool, fileName) {
     const sql = await fs.readFile(path.join(__dirname, "postgres", fileName), "utf8");
@@ -9,6 +9,7 @@ async function runSqlFile(pool, fileName) {
 }
 
 async function seedDatabase() {
+    validatePostgresConfig(config.postgres);
     const pool = new Pool(config.postgres);
 
     try {
