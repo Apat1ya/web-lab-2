@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         homeBooks.innerHTML = books.slice(0, 8).map((book) => `
             <article class="book-card" data-id="${book.id}">
                 <a href="book.html?id=${encodeURIComponent(book.id)}">
-                    <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}">
+                    <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}" loading="lazy" decoding="async">
                 </a>
                 <h3>${escapeHtml(book.title)}</h3>
                 <p class="price">${Number(book.price).toFixed(0)} грн</p>

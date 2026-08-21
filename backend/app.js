@@ -3,6 +3,10 @@ const path = require("node:path");
 const { createBooksRouter } = require("./routes/books");
 
 const publicRoot = path.resolve(__dirname, "..");
+const staticCacheOptions = {
+    maxAge: "7d",
+    immutable: false,
+};
 const pages = new Set([
     "about.html",
     "account.html",
@@ -33,6 +37,11 @@ function createApp({ repository }) {
 
     app.use(express.json());
 
+    app.use("/api", (req, res, next) => {
+        res.setHeader("Cache-Control", "no-store");
+        next();
+    });
+
     app.get("/api/health", async (req, res) => {
         try {
             if (repository.health) {
@@ -47,12 +56,15 @@ function createApp({ repository }) {
 
     app.use("/api/books", createBooksRouter(repository));
 
-    app.use("/assets", express.static(path.join(publicRoot, "assets")));
-    app.use("/js", express.static(path.join(publicRoot, "js")));
+    app.use("/assets", express.static(path.join(publicRoot, "assets"), staticCacheOptions));
+    app.use("/js", express.static(path.join(publicRoot, "js"), staticCacheOptions));
 
-    app.get(["/", "/style.css", "/script.js"], (req, res) => {
-        const fileName = req.path === "/" ? "index.html" : req.path.slice(1);
-        res.sendFile(path.join(publicRoot, fileName));
+    app.get("/", (req, res) => {
+        sendHtml(res, "index.html");
+    });
+
+    app.get(["/style.css", "/script.js"], (req, res) => {
+        res.sendFile(path.join(publicRoot, req.path.slice(1)), staticCacheOptions);
     });
 
     app.get("/:page", (req, res, next) => {
@@ -60,7 +72,7 @@ function createApp({ repository }) {
             return next();
         }
 
-        res.sendFile(path.join(publicRoot, req.params.page));
+        sendHtml(res, req.params.page);
     });
 
     app.use((req, res) => {
@@ -75,6 +87,12 @@ function createApp({ repository }) {
     });
 
     return app;
+}
+
+function sendHtml(res, fileName) {
+    res.sendFile(path.join(publicRoot, fileName), {
+        headers: { "Cache-Control": "no-cache" },
+    });
 }
 
 module.exports = { createApp };

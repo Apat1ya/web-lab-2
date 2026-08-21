@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-21T18:05:30.117Z",
+  "baseUrl": "http://localhost:3000",
+  "status": "completed",
+  "scenario": {
+    "routes": [
+      "/",
+      "/catalog.html",
+      "/api/books"
+    ],
+    "sequentialRequestsPerRoute": 10,
+    "parallelRequestsPerRoute": 20,
+    "totalPlannedRequests": 90,
+    "requestTimeoutMs": 5000
+  },
+  "overall": {
+    "requests": 90,
+    "successfulRequests": 90,
+    "failedRequests": 0,
+    "minResponseTimeMs": 0.693,
+    "averageResponseTimeMs": 36.324,
+    "p95ResponseTimeMs": 83.775,
+    "maxResponseTimeMs": 87,
+    "totalDurationMs": 168.181,
+    "approximateRequestsPerSecond": 535.137
+  },
+  "stages": {
+    "sequential": {
+      "requests": 30,
+      "successfulRequests": 30,
+      "failedRequests": 0,
+      "minResponseTimeMs": 0.693,
+      "averageResponseTimeMs": 2.627,
+      "p95ResponseTimeMs": 4.455,
+      "maxResponseTimeMs": 25.509,
+      "totalDurationMs": 78.951,
+      "approximateRequestsPerSecond": 379.981
+    },
+    "parallel": {
+      "requests": 60,
+      "successfulRequests": 60,
+      "failedRequests": 0,
+      "minResponseTimeMs": 8.145,
+      "averageResponseTimeMs": 53.173,
+      "p95ResponseTimeMs": 84.907,
+      "maxResponseTimeMs": 87,
+      "totalDurationMs": 89.23,
+      "approximateRequestsPerSecond": 672.42
+    }
+  },
+  "byRoute": {
+    "/": {
+      "requests": 30,
+      "successfulRequests": 30,
+      "failedRequests": 0,
+      "minResponseTimeMs": 0.703,
+      "averageResponseTimeMs": 29.815,
+      "p95ResponseTimeMs": 55.51,
+      "maxResponseTimeMs": 55.771
+    },
+    "/catalog.html": {
+      "requests": 30,
+      "successfulRequests": 30,
+      "failedRequests": 0,
+      "minResponseTimeMs": 0.693,
+      "averageResponseTimeMs": 30.94,
+      "p95ResponseTimeMs": 55.639,
+      "maxResponseTimeMs": 55.851
+    },
+    "/api/books": {
+      "requests": 30,
+      "successfulRequests": 30,
+      "failedRequests": 0,
+      "minResponseTimeMs": 1.556,
+      "averageResponseTimeMs": 48.218,
+      "p95ResponseTimeMs": 86.467,
+      "maxResponseTimeMs": 87
+    }
+  }
+}

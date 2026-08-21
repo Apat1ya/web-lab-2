@@ -106,11 +106,25 @@ test("app serves frontend files without exposing repo metadata", async () => {
     try {
         let response = await fetch(`${baseUrl}/`);
         assert.equal(response.status, 200);
+        assert.equal(response.headers.get("cache-control"), "no-cache");
         assert.match(await response.text(), /BookStore/);
 
         response = await fetch(`${baseUrl}/style.css`);
         assert.equal(response.status, 200);
         assert.match(response.headers.get("content-type"), /text\/css/);
+        assert.equal(response.headers.get("cache-control"), "public, max-age=604800");
+
+        response = await fetch(`${baseUrl}/js/catalog.js`);
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get("cache-control"), "public, max-age=604800");
+
+        response = await fetch(`${baseUrl}/assets/book1.png`);
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get("cache-control"), "public, max-age=604800");
+
+        response = await fetch(`${baseUrl}/api/books`);
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get("cache-control"), "no-store");
 
         response = await fetch(`${baseUrl}/package.json`);
         assert.equal(response.status, 404);

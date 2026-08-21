@@ -38,7 +38,7 @@ function renderBooks() {
     elements.list.innerHTML = state.books.map((book) => `
         <article class="book-card" data-id="${book.id}">
             <a href="book.html?id=${encodeURIComponent(book.id)}">
-                <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}">
+                <img src="${escapeAttribute(book.imageUrl || "assets/book1.png")}" alt="${escapeAttribute(book.title)}" loading="lazy" decoding="async">
             </a>
             <h3>${escapeHtml(book.title)}</h3>
             <p>${escapeHtml(book.author)}</p>
