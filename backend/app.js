@@ -57,14 +57,11 @@ function createApp({ repository }) {
     app.use("/api/books", createBooksRouter(repository));
 
     app.use("/assets", express.static(path.join(publicRoot, "assets"), staticCacheOptions));
+    app.use("/css", express.static(path.join(publicRoot, "css"), staticCacheOptions));
     app.use("/js", express.static(path.join(publicRoot, "js"), staticCacheOptions));
 
     app.get("/", (req, res) => {
         sendHtml(res, "index.html");
-    });
-
-    app.get(["/style.css", "/script.js"], (req, res) => {
-        res.sendFile(path.join(publicRoot, req.path.slice(1)), staticCacheOptions);
     });
 
     app.get("/:page", (req, res, next) => {

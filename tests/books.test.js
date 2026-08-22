@@ -109,7 +109,7 @@ test("app serves frontend files without exposing repo metadata", async () => {
         assert.equal(response.headers.get("cache-control"), "no-cache");
         assert.match(await response.text(), /BookStore/);
 
-        response = await fetch(`${baseUrl}/style.css`);
+        response = await fetch(`${baseUrl}/css/style.css`);
         assert.equal(response.status, 200);
         assert.match(response.headers.get("content-type"), /text\/css/);
         assert.equal(response.headers.get("cache-control"), "public, max-age=604800");
